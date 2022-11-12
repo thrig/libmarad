@@ -5,7 +5,8 @@
 .Nm marad_board , 
 .Nm marad_init , 
 .Nm marad_move , 
-.Nm marad_owns
+.Nm marad_owns ,
+.Nm marad_score
 .Sh SYNOPSIS
 .In marad.h
 .Ft void
@@ -18,6 +19,8 @@
 .Fn marad_move "struct marad *, int moves, int srcx, int srcy, int dstx, int dsty"
 .Ft int
 .Fn marad_owns "struct marad *, int x, int y"
+.Ft void
+.Fn marad_score "struct marad *, int *score1, int *score2"
 .Sh DESCRIPTION
 This library implements the board game Marad, providing a map and
 several utility functions to query and move pieces on the board.
