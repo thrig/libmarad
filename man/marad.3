@@ -1,0 +1,62 @@
+.Dd November 12 2022
+.Dt LIBMARAD 3
+.Os
+.Sh NAME
+.Nm marad_board , 
+.Nm marad_init , 
+.Nm marad_move , 
+.Nm marad_owns
+.Sh SYNOPSIS
+.In marad.h
+.Ft void
+.Fn marad_board "struct marad *, uint8_t *board"
+.Ft void
+.Fn marad_free "struct marad *"
+.Ft struct marad *
+.Fn marad_init "void"
+.Ft int
+.Fn marad_move "struct marad *, int moves, int srcx, int srcy, int dstx, int dsty"
+.Ft int
+.Fn marad_owns "struct marad *, int x, int y"
+.Sh DESCRIPTION
+This library implements the board game Marad, providing a map and
+several utility functions to query and move pieces on the board.
+.Sh EXAMPLES
+.Bd -literal
+#include <marad.h>
+
+// constructor. be sure to check for NULL
+struct marad *game = marad_init();
+if (!game) abort();
+
+// does current player own the piece at ...
+marad_owns(game, 0, 0);
+marad_owns(game, 1, 1);
+marad_owns(game, 7, 1);
+
+// make a move (the moves count is typically shared between
+// both players over a turnpair)
+marad_move(game, 3, 1, 1, 2, 2);
+
+// one way to show the board
+uint8_t board[MARAD_BOARD_TOTAL_SIZE];
+marad_board(game, board);
+for (int i = 0; i < MARAD_BOARD_TOTAL_SIZE; i++) {
+	printf("%d%c", board[i],
+	  ((i % MARAD_BOARD_SIZE) == (MARAD_BOARD_SIZE -1)) ? '\n' : ' ');
+}
+
+// what is the score?
+int score1, score2;
+marad_score(game, &score1, &score2);
+
+marad_free(game);
+.Ed
+.Sh SEE ALSO
+gemini://thrig.me/game/marad.gmi
+.Pp
+https://thrig.me/src/Game-Marad.git
+.Pp
+https://thrig.me/src/marad.git
+.Sh AUTHORS
+.An Jeremy Mates
