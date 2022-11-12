@@ -1,0 +1,24 @@
+libmarad - a board game implementation
+
+gemini://thrig.me/game/marad.gmi
+
+This implementation does not generate the moves count for each turn
+pair; the caller will need to manage that as appropriate.
+
+
+INSTALLATION
+
+Build and install along the lines of:
+
+    unset CFLAGS
+    export AUTOMAKE_VERSION=1.16
+    export AUTOCONF_VERSION=2.71
+    autoreconf -i
+    ./configure [--prefix=...] && make && make install
+
+Highly recommended is the --enable-the-rpath flag (or on macOS
+--enable-macos-rpath) to avoid the need for LD_LIBRARY_PATH tomfoolery:
+
+    ./configure --enable-the-rpath \
+      --prefix=$HOME/usr/`uname``uname -r`-`uname -m`
+    make && make install
