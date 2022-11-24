@@ -26,7 +26,7 @@ struct marad {
 	uint8_t board[MARAD_BOARD_TOTAL_SIZE];
 };
 
-uint8_t default_board[MARAD_BOARD_TOTAL_SIZE] = {
+static uint8_t default_board[MARAD_BOARD_TOTAL_SIZE] = {
   0, 0, 0, 0, 0, 0, 0, 0,  0, // initial state
   0, 2, 0, 0, 0, 0, 0, 66, 0, //
   0, 1, 0, 0, 0, 0, 0, 65, 0, //
