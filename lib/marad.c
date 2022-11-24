@@ -76,7 +76,7 @@ marad_move(struct marad *game, int moves, int srcx, int srcy, int dstx,
 	assert(moves >= 1 && moves <= 4);
 
 	this = piece(game, srcx, srcy);
-	if (piece == NOTHING) return 0;
+	if (this == NOTHING) return 0;
 	if (((this >> PLAYER_BIT) & 1) != game->player) return 0;
 
 	move_type = movetype(srcx, srcy, dstx, dsty, &stepx, &stepy);
